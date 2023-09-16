@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class GPT
 {
-    public static function ask($prompt): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
+    public static function ask($prompt)
     {
        $res= Http::withToken(self::Key())->post(self::URL(), [
             "model" => "gpt-3.5-turbo",
@@ -14,7 +14,7 @@ class GPT
             "temperature" => 0.7
         ]);
 
-       return $res;
+       return $res->json();
 
     }
 
